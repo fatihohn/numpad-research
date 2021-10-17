@@ -92,18 +92,20 @@ Test.startBtn.onclick = async () => {
 Test.nextBtn.onclick = async () => {
   console.log(Test.count);
   // console.log(Test.log);
-  if(Test.count > 0 && Test.testInput.dataset.value.length === 6) {
-    Test.setResult();
-    await Test.initNumPad();
-    Test.setTestNumbers();
-    Test.enumerate();
-    return;
-  }
-  if(Test.count === 0){
-    // console.log(Test.count);
-    Test.status = 'complete';
-    Test.setResult();
-    Test.showResult();
+  if(Test.testInput.dataset.value.length === 6) {
+    if(Test.count > 0) {
+      Test.setResult();
+      await Test.initNumPad();
+      Test.setTestNumbers();
+      Test.enumerate();
+      return;
+    }
+    if(Test.count === 0){
+      // console.log(Test.count);
+      Test.status = 'complete';
+      Test.setResult();
+      Test.showResult();
+    }
   }
   return;
 }
@@ -217,7 +219,7 @@ Test.delTestInput = () => {
 
 Test.initNumPad = async () => {
   Test.loading.style.display = 'initial';
-  Test.loading.innerHTML = '준비하세요..!';
+  // Test.loading.innerHTML = '준비하세요..!';
   let option = Test.schedule[Test.count - 1];
   console.log(option);
   await Test.sleep(1000);
