@@ -216,7 +216,6 @@ Test.mmToPx = (mm) => {
   return `${Util.mmToPx(mm)}px`;
 }
 Test.resizeBtns = () => {
-  let delBtn = document.querySelector('#del-btn')
   let btnStyle = {
     fontSize: Test.mmToPx(7),
     width: Test.mmToPx(17.5),
@@ -242,15 +241,17 @@ Test.resizeBtns = () => {
     btn.style.lineHeight = btnStyle.lineHeight;
     btn.style.margin = btnStyle.margin;
   });
-  delBtn.style.fontSize = btnStyle.fontSize;
-  delBtn.style.width = btnStyle.width;
-  delBtn.style.minWidth = btnStyle.minWidth;
-  delBtn.style.maxWidth = btnStyle.maxWidth;
-  delBtn.style.height = btnStyle.height;
-  delBtn.style.minHeight = btnStyle.minHeight;
-  delBtn.style.maxHeight = btnStyle.maxHeight;
-  delBtn.style.lineHeight = btnStyle.lineHeight;
-  delBtn.style.margin = btnStyle.margin;
+  document.querySelectorAll('.del-btn').forEach(btn => {
+    btn.style.fontSize = btnStyle.fontSize;
+    btn.style.width = btnStyle.width;
+    btn.style.minWidth = btnStyle.minWidth;
+    btn.style.maxWidth = btnStyle.maxWidth;
+    btn.style.height = btnStyle.height;
+    btn.style.minHeight = btnStyle.minHeight;
+    btn.style.maxHeight = btnStyle.maxHeight;
+    btn.style.lineHeight = btnStyle.lineHeight;
+    btn.style.margin = btnStyle.margin;
+  });
 }
 
 Test.emptyTestInput = () => {
@@ -323,7 +324,16 @@ Test.showNumPad = (option = 'normal') => {
   Test.numpadNumbers = Test.shuffle(Test.numpadNumbers);
 
   return `<div id="num-pad-shadow">
-            <div class="row" style="display: flex; align-items: center; justify-content: right;">
+            <div class="row" style="
+                display: -webkit-flex; 
+                --webkit-align-items: center; 
+                --webkit-justify-content: right;
+                display: flex; 
+                align-items: center; 
+                justify-content: right;
+              ">
+                <div class="col-2 text-center border del-btn ${shadowOption}" data-value="del" style="visibility: hidden">Del</div>
+                <div class="col-2 text-center border del-btn ${shadowOption}" data-value="del" style="visibility: hidden">Del</div>
                 <div id="del-btn" class="col-2 text-center border del-btn ${shadowOption}" data-value="del">Del</div>
             </div>
             <div class="row">
