@@ -3,8 +3,8 @@ Test.result = [];
 Test.resultHTML = '';
 Test.schedule = [];
 Test.condition = {
-  shadow: 1,
-  normal: 1
+  shadow: 25,
+  normal: 25
 }
 Test.count = Test.condition.shadow + Test.condition.normal;
 console.log(Test.count);
