@@ -101,7 +101,6 @@ Test.setResult = () => {
   log.correct = log.test_input === log.test_number;
   log.reflection_speed = log.first_input_timestamp - log.test_start_timestamp;
   log.test_speed = log.test_end_timestamp - log.test_start_timestamp;
-  // log.average_input_speed = (Math.floor(log.test_speed/log.input_count) * log.input_count).toFixed(2)
   log.average_input_speed = (Math.floor((log.test_speed * 10000)/log.input_count)) / 10000;
   log.trial = Test.trial;
   Test.result.push(log);
@@ -204,6 +203,7 @@ Test.initNumPad = async () => {
 
   Test.content.innerHTML = '';
   Test.content.innerHTML = Test.showNumPad(option);
+  Test.resizeBtns();
   Test.testNumber.innerHTML = 'Press Start button';
   Test.emptyTestInput();
   Test.delBtn = document.querySelector('#del-btn');
@@ -211,6 +211,29 @@ Test.initNumPad = async () => {
     Test.delTestInput();
   }
   Test.inputNumber();
+}
+Test.mmToPx = (mm) => {
+  return `${Util.mmToPx(mm)}px`;
+}
+Test.resizeBtns = () => {
+  let btnStyle = {
+    fontSize: Test.mmToPx(7),
+    width: Test.mmToPx(17.5),
+    minWidth: Test.mmToPx(17.5),
+    maxWidth: Test.mmToPx(17.5),
+    height: Test.mmToPx(17.5),
+    minHeight: Test.mmToPx(17.5),
+    maxHeight: Test.mmToPx(17.5),
+    lineHeight: Test.mmToPx(17.5),
+    margin: Test.mmToPx(1.5)
+  }
+  document.querySelector('.numpad-wrap').style.width = Test.mmToPx(120);
+  document.querySelector('.numpad-wrap').style.maxWidth = Test.mmToPx(120);
+  document.querySelector('.numpad-wrap').style.minWidth = Test.mmToPx(120);
+  document.querySelectorAll('.num-btn').forEach(btn => {
+    btn.style = btnStyle;
+  });
+  document.querySelector('#del-btn').style = btnStyle;
 }
 
 Test.emptyTestInput = () => {
@@ -302,8 +325,7 @@ Test.showNumPad = (option = 'normal') => {
               ${Test.numpadNumbers[8]}
             </div>
             <div class="row">
-              ${Test.numpadNumbers[9]}
-              
+              ${Test.numpadNumbers[9]}              
             </div>
           </div> `;
 }
