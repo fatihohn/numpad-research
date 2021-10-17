@@ -3,8 +3,8 @@ Test.result = [];
 Test.resultHTML = '';
 Test.schedule = [];
 Test.condition = {
-  shadow: 25,
-  normal: 25
+  shadow: 3,
+  normal: 3
 }
 Test.count = Test.condition.shadow + Test.condition.normal;
 console.log(Test.count);
@@ -150,7 +150,7 @@ Test.showResult = () => {
               <td class="px-1">총 입력 회수</td>
               <td class="px-1">${result.input_count}</td>
           </tr>
-          <tr class="border-bottom">
+          <tr class="border-2 border-start-0 border-end-0 border-top-0">
               <td class="px-1">성공 여부</td>
               <td class="px-1">${result.correct}</td>
           </tr>
@@ -197,6 +197,7 @@ Test.delTestInput = () => {
 
 Test.initNumPad = async () => {
   Test.loading.style.display = 'initial';
+  Test.loading.innerHTML = '준비하세요..!';
   let option = Test.schedule[Test.count - 1];
   console.log(option);
   await Test.sleep(1000);
