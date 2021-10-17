@@ -54,6 +54,7 @@ Test.refreshBtn = document.querySelector('#test-refresh-btn');
 Test.testInput = document.querySelector('#test-input');
 Test.testNumber = document.querySelector('#test-number');
 Test.content = document.querySelector('#content');
+Test.section = document.querySelector('section');
 Test.testResult = document.querySelector('#test-result');
 
 Test.refreshBtn.onclick = () => {
@@ -109,6 +110,8 @@ Test.setResult = () => {
 
 Test.showResult = () => {
   Test.emptyAll();
+  Test.content.style.touchAction = 'initial';
+  Test.section.style.touchAction = 'initial';
   Test.testNumber.innerHTML = 'Test End';
   Test.nextBtn.style.display = 'none';
   Test.endBtn.style.display = 'initial';
