@@ -73,10 +73,14 @@
             min-width: 120mm;
         }
 
-        #content {
+        section, #content {
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        section {
+            height: 100vh;
         }
 
         .test-btn {
@@ -153,15 +157,15 @@
 </head>
 <body class="bg-light">
 
-<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
-    <div class="container-fluid d-flex align-items-center">
-        <h1 class="d-flex align-items-center fs-4 text-white mb-0">
-            <img src="assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap">
-            NumPad
-        </h1>
-    </div>
-</header>
-<!--<input type="button" id="excelFileExport" value="엑셀 파일 다운로드(TABLE)" />-->
+<!--<header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">-->
+<!--    <div class="container-fluid d-flex align-items-center">-->
+<!--        <h1 class="d-flex align-items-center fs-4 text-white mb-0">-->
+<!--            <img src="assets/brand/bootstrap-logo-white.svg" width="38" height="30" class="me-3" alt="Bootstrap">-->
+<!--            NumPad-->
+<!--        </h1>-->
+<!--    </div>-->
+<!--</header>-->
+<!--<input type="button" id="test-end-btn" value="엑셀 파일 다운로드(TABLE)" />-->
 <table id="test-result" style="display: none">
     <thead>
     <tr>
@@ -185,7 +189,8 @@
         <div id="tool-bar" class="border p-2 fs-4 text-center mt-2 mx-5">
             <button id="test-start-btn" class="test-btn start-btn">Start</button>
             <button id="test-next-btn" class="test-btn next-btn">Next</button>
-            <button id="excelFileExport" class="test-btn end-btn">End</button>
+            <button id="test-end-btn" class="test-btn end-btn">End</button>
+            <button id="test-refresh-btn" class="test-btn end-btn">Refresh</button>
         </div>
     </div>
 </section>

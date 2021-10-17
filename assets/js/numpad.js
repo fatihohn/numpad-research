@@ -49,11 +49,16 @@ Test.numpadNumbers = [];
 Test.loading = document.querySelector('#loading');
 Test.startBtn = document.querySelector('#test-start-btn');
 Test.nextBtn = document.querySelector('#test-next-btn');
-Test.endBtn = document.querySelector('#excelFileExport');
+Test.endBtn = document.querySelector('#test-end-btn');
+Test.refreshBtn = document.querySelector('#test-refresh-btn');
 Test.testInput = document.querySelector('#test-input');
 Test.testNumber = document.querySelector('#test-number');
 Test.content = document.querySelector('#content');
 Test.testResult = document.querySelector('#test-result');
+
+Test.refreshBtn.onclick = () => {
+  location.href = window.location;
+}
 
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
@@ -309,9 +314,9 @@ Test.makeSchedule();
 Test.initNumPad();
 
 document.addEventListener("DOMContentLoaded", function(){
-  document.querySelector("#excelFileExport").onclick = function(){
+  document.querySelector("#test-end-btn").onclick = function(){
     exportExcel();
     Test.endBtn.style.display = 'none';
-    Test.startBtn.style.display = 'initial';
+    Test.refreshBtn.style.display = 'initial';
   };
 });
