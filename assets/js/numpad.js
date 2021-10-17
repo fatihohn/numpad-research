@@ -216,6 +216,7 @@ Test.mmToPx = (mm) => {
   return `${Util.mmToPx(mm)}px`;
 }
 Test.resizeBtns = () => {
+  let delBtn = document.querySelector('#del-btn')
   let btnStyle = {
     fontSize: Test.mmToPx(7),
     width: Test.mmToPx(17.5),
@@ -231,9 +232,25 @@ Test.resizeBtns = () => {
   document.querySelector('.numpad-wrap').style.maxWidth = Test.mmToPx(120);
   document.querySelector('.numpad-wrap').style.minWidth = Test.mmToPx(120);
   document.querySelectorAll('.num-btn').forEach(btn => {
-    btn.style = btnStyle;
+    btn.style.fontSize = btnStyle.fontSize;
+    btn.style.width = btnStyle.width;
+    btn.style.minWidth = btnStyle.minWidth;
+    btn.style.maxWidth = btnStyle.maxWidth;
+    btn.style.height = btnStyle.height;
+    btn.style.minHeight = btnStyle.minHeight;
+    btn.style.maxHeight = btnStyle.maxHeight;
+    btn.style.lineHeight = btnStyle.lineHeight;
+    btn.style.margin = btnStyle.margin;
   });
-  document.querySelector('#del-btn').style = btnStyle;
+  delBtn.style.fontSize = btnStyle.fontSize;
+  delBtn.style.width = btnStyle.width;
+  delBtn.style.minWidth = btnStyle.minWidth;
+  delBtn.style.maxWidth = btnStyle.maxWidth;
+  delBtn.style.height = btnStyle.height;
+  delBtn.style.minHeight = btnStyle.minHeight;
+  delBtn.style.maxHeight = btnStyle.maxHeight;
+  delBtn.style.lineHeight = btnStyle.lineHeight;
+  delBtn.style.margin = btnStyle.margin;
 }
 
 Test.emptyTestInput = () => {
