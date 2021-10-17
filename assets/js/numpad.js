@@ -139,6 +139,10 @@ Test.showResult = () => {
               <td class="px-1">${result.trial}</td>
           </tr>
           <tr class="border-bottom">
+              <td class="px-1">유형</td>
+              <td class="px-1">${result.type}</td>
+          </tr>
+          <tr class="border-bottom">
               <td class="px-1">과제</td>
               <td class="px-1">${result.test_number}</td>
           </tr>
