@@ -2,13 +2,23 @@ let Test = {};
 Test.result = [];
 Test.resultHTML = '';
 Test.schedule = [];
-Test.condition = {
-  shadow: 3,
-  normal: 3
-}
-Test.count = Test.condition.shadow + Test.condition.normal;
-console.log(Test.count);
+Test.countInput = document.querySelector('#test-count');
+// Test.count = document.querySelector('#test-count').value;
+// Test.condition = {
+//   shadow: 3,
+//   normal: 3
+// }
+// Test.count = Test.condition.shadow + Test.condition.normal;
 Test.makeSchedule = () => {
+  Test.countInput.style.display = 'none';
+  Test.count = Test.countInput.value;
+
+  Test.condition = {
+    shadow: Math.floor(Test.count/2),
+    normal: Math.floor(Test.count/2)
+  }
+  Test.count = Test.condition.shadow + Test.condition.normal;
+  console.log(Test.count);
   let schedule = [];
   let shadow = 'shadow';
   let normal = 'normal';
@@ -63,6 +73,12 @@ Test.refreshBtn.onclick = () => {
 
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
+  if(Test.countInput.value >= 2) {
+    Test.makeSchedule();
+  } else {
+    alert('2보다 큰 짝수를 입력해주세요!');
+    return;
+  }
   console.log(Test.count);
   // Test.log = await Test.template();
   Test.status = 'testing';
@@ -363,7 +379,7 @@ Test.showNumPad = (option = 'normal') => {
 
 Test.sleep = m => new Promise(r => setTimeout(r, m));
 
-Test.makeSchedule();
+// Test.makeSchedule();
 Test.initNumPad();
 
 document.addEventListener("DOMContentLoaded", function(){
