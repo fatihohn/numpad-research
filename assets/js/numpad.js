@@ -70,6 +70,9 @@ Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
   // await Test.section.requestFullscreen();
+  if(window.webkitRequestFullscreen()) {
+    await Test.section.webkitRequestFullscreen();
+  }
   // console.log(window.navigator.standalone);
   if(Test.countInput.value >= 2) {
     Test.makeSchedule();
