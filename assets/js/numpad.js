@@ -69,6 +69,7 @@ Test.refreshBtn.onclick = () => {
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
+  await Test.section.requestFullscreen();
   if(Test.countInput.value >= 2) {
     Test.makeSchedule();
   } else {
