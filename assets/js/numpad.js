@@ -68,6 +68,7 @@ Test.refreshBtn.onclick = () => {
 
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
+  Test.section.style.overflowY = 'hidden';
   if(Test.countInput.value >= 2) {
     Test.makeSchedule();
   } else {
@@ -84,6 +85,7 @@ Test.startBtn.onclick = async () => {
   Test.startBtn.style.display = 'none';
   Test.nextBtn.style.display = 'initial';
 }
+
 Test.nextBtn.onclick = async () => {
   console.log(Test.count);
   // console.log(Test.log);
@@ -123,6 +125,7 @@ Test.setResult = () => {
 
 Test.showResult = () => {
   Test.emptyAll();
+  Test.section.style.overflowY = 'auto';
   Test.content.style.touchAction = 'initial';
   Test.section.style.touchAction = 'initial';
   Test.testNumber.innerHTML = 'Test End';
