@@ -56,6 +56,7 @@ Test.nextBtn = document.querySelector('#test-next-btn');
 Test.endBtn = document.querySelector('#test-end-btn');
 Test.refreshBtn = document.querySelector('#test-refresh-btn');
 Test.testInput = document.querySelector('#test-input');
+Test.testBody = document.querySelector('#test-body');
 Test.testNumber = document.querySelector('#test-number');
 Test.content = document.querySelector('#content');
 Test.section = document.querySelector('section');
@@ -213,6 +214,7 @@ Test.delTestInput = () => {
 
 Test.initNumPad = async () => {
   Test.loading.style.display = 'initial';
+
   // Test.loading.innerHTML = '준비하세요..!';
   let option = Test.schedule[Test.count - 1];
   console.log(option);
@@ -222,19 +224,28 @@ Test.initNumPad = async () => {
   Test.log.test_start_timestamp = Date.now();
 
   Test.content.innerHTML = '';
-  Test.content.innerHTML = Test.showNumPad(option);
-  Test.resizeBtns();
+  if(option) {
+    Test.testInput.style.display = 'block';
+    Test.testBody.style.display = 'block';
+    Test.content.innerHTML = Test.showNumPad(option);
+    Test.resizeBtns();
+    Test.delBtn = document.querySelector('#del-btn');
+    Test.delBtn.onclick = () => {
+      Test.delTestInput();
+    }
+    Test.inputNumber();
+  } else {
+    Test.testInput.style.display = 'none';
+    Test.testBody.style.display = 'none';
+  }
   Test.testNumber.innerHTML = 'Press Start button';
   Test.emptyTestInput();
-  Test.delBtn = document.querySelector('#del-btn');
-  Test.delBtn.onclick = () => {
-    Test.delTestInput();
-  }
-  Test.inputNumber();
 }
+
 Test.mmToPx = (mm) => {
   return `${Util.mmToPx(mm)}px`;
 }
+
 Test.resizeBtns = () => {
   let btnStyle = {
     fontSize: Test.mmToPx(7),
@@ -343,19 +354,18 @@ Test.showNumPad = (option = 'normal') => {
 
   Test.numpadNumbers = Test.shuffle(Test.numpadNumbers);
 
+            // <div class="row" style="
+            //     display: -webkit-flex;
+            //     --webkit-align-items: center;
+            //     --webkit-justify-content: right;
+            //     display: flex;
+            //     align-items: center;
+            //     justify-content: right;
+            //   ">
+            //     <div class="col-2 text-center border del-btn ${shadowOption}" style="visibility: hidden"></div>
+            //     <div class="col-2 text-center border del-btn ${shadowOption}" style="visibility: hidden"></div>
+            // </div>
   return `<div id="num-pad-shadow">
-            <div class="row" style="
-                display: -webkit-flex; 
-                --webkit-align-items: center; 
-                --webkit-justify-content: right;
-                display: flex; 
-                align-items: center; 
-                justify-content: right;
-              ">
-                <div class="col-2 text-center border del-btn ${shadowOption}" data-value="del" style="visibility: hidden">Del</div>
-                <div class="col-2 text-center border del-btn ${shadowOption}" data-value="del" style="visibility: hidden">Del</div>
-                <div id="del-btn" class="col-2 text-center border del-btn ${shadowOption}" data-value="del">Del</div>
-            </div>
             <div class="row">
               ${Test.numpadNumbers[0]}
               ${Test.numpadNumbers[1]}
@@ -372,7 +382,9 @@ Test.showNumPad = (option = 'normal') => {
               ${Test.numpadNumbers[8]}
             </div>
             <div class="row">
+                <div class="col-2 text-center border del-btn ${shadowOption}" style="visibility: hidden"></div>
               ${Test.numpadNumbers[9]}              
+                <div id="del-btn" class="col-2 text-center border del-btn ${shadowOption}" data-value="del">Del</div>
             </div>
           </div> `;
 }
