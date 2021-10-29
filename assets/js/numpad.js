@@ -69,12 +69,7 @@ Test.refreshBtn.onclick = () => {
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
-  if(window.webkitRequestFullscreen) {
-    await Test.section.webkitRequestFullscreen();
-  }
-  if(window.requestFullscreen) {
-    await Test.section.requestFullscreen();
-  }
+
   // console.log(window.navigator.standalone);
   if(Test.countInput.value >= 2) {
     Test.makeSchedule();
@@ -82,6 +77,13 @@ Test.startBtn.onclick = async () => {
     alert('2보다 큰 짝수를 입력해주세요!');
     return;
   }
+
+  // if(Test.section.webkitRequestFullscreen) {
+  //   await Test.section.webkitRequestFullscreen();
+  // }
+  // if(Test.section.requestFullscreen) {
+  //   await Test.section.requestFullscreen();
+  // }
   console.log(Test.count);
   // Test.log = await Test.template();
   Test.status = 'testing';
