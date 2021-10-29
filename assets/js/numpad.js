@@ -3,12 +3,6 @@ Test.result = [];
 Test.resultHTML = '';
 Test.schedule = [];
 Test.countInput = document.querySelector('#test-count');
-// Test.count = document.querySelector('#test-count').value;
-// Test.condition = {
-//   shadow: 3,
-//   normal: 3
-// }
-// Test.count = Test.condition.shadow + Test.condition.normal;
 Test.makeSchedule = () => {
   Test.countInput.style.display = 'none';
   Test.count = Test.countInput.value;
