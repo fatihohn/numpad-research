@@ -181,6 +181,9 @@
     <tbody></tbody>
 </table>
 <section class="bd-cheatsheet container-fluid bg-body" >
+    <div id="fullscreen-wrap">
+        <button id="fullscreen-btn">Full Screen</button>
+    </div>
 <!--    <div class="bd-cheatsheet container-fluid bg-body"  style="width:100vw; min-width:100vw">-->
     <div class="numpad-wrap">
         <div id="test-number" class="test-box border p-2 fs-4 text-center mt-5 mx-5 mb-2 " ></div>
@@ -199,6 +202,7 @@
             <button id="test-next-btn" class="test-btn next-btn">Next</button>
             <button id="test-end-btn" class="test-btn end-btn">End</button>
             <button id="test-refresh-btn" class="test-btn end-btn">Refresh</button>
+
         </div>
     </div>
 </section>
@@ -219,10 +223,36 @@
 </div>
 
 <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="node_modules/screenfull/dist/screenfull.js"></script>
 
 <script src="assets/js/index.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/numpad.js"></script>
+
+<script>
+
+    let fullScreenBtn = document.querySelector('#fullscreen-btn');
+
+    console.log(screenfull.isEnabled);
+    // screenfull.request();
+    fullScreenBtn.onclick = () => {
+        if(screenfull.isEnabled) {
+            screenfull.request();
+        }
+    }
+
+    if (screenfull.isEnabled) {
+        screenfull.on('change', () => {
+            console.log('Am I fullscreen?', screenfull.isFullscreen ? 'Yes' : 'No');
+            if(screenfull.isFullscreen) {
+                fullScreenBtn.style.display = 'none';
+            } else {
+                fullScreenBtn.style.display = 'initial';
+            }
+        });
+    }
+
+</script>
 
 </body>
 </html>
