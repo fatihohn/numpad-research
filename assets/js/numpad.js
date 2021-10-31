@@ -8,8 +8,8 @@ Test.makeSchedule = () => {
   Test.count = Test.countInput.value;
 
   Test.condition = {
-    shadow: Math.floor(Test.count/2),
-    normal: Math.floor(Test.count/2)
+    shadow: Math.floor(Test.count/1),
+    normal: Math.floor(Test.count/1)
   }
   Test.count = Test.condition.shadow + Test.condition.normal;
   console.log(Test.count);
@@ -70,14 +70,14 @@ Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
   if(screenfull.isEnabled) {
-    screenfull.request();
+    screenfull.request(Test.section);
   }
 
   // console.log(window.navigator.standalone);
-  if(Test.countInput.value >= 2) {
+  if(Test.countInput.value >= 1) {
     Test.makeSchedule();
   } else {
-    alert('2보다 큰 짝수를 입력해주세요!');
+    alert('1 이상의 수를 입력해주세요!');
     return;
   }
 
