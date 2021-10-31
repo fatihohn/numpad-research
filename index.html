@@ -181,9 +181,6 @@
     <tbody></tbody>
 </table>
 <section class="bd-cheatsheet container-fluid bg-body" >
-    <div id="fullscreen-wrap">
-        <button id="fullscreen-btn">Full Screen</button>
-    </div>
 <!--    <div class="bd-cheatsheet container-fluid bg-body"  style="width:100vw; min-width:100vw">-->
     <div class="numpad-wrap">
         <div id="test-number" class="test-box border p-2 fs-4 text-center mt-5 mx-5 mb-2 " ></div>
@@ -231,15 +228,15 @@
 
 <script>
 
-    let fullScreenBtn = document.querySelector('#fullscreen-btn');
+    // let fullScreenBtn = document.querySelector('#fullscreen-btn');
 
-    console.log(screenfull.isEnabled);
+    // console.log(screenfull.isEnabled);
     // screenfull.request();
-    fullScreenBtn.onclick = () => {
-        if(screenfull.isEnabled) {
-            screenfull.request();
-        }
-    }
+    // fullScreenBtn.onclick = () => {
+    //     if(screenfull.isEnabled) {
+    //         screenfull.request();
+    //     }
+    // }
 
     if (screenfull.isEnabled) {
         screenfull.on('change', () => {

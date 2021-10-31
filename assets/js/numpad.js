@@ -69,6 +69,9 @@ Test.refreshBtn.onclick = () => {
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
+  if(screenfull.isEnabled) {
+    screenfull.request();
+  }
 
   // console.log(window.navigator.standalone);
   if(Test.countInput.value >= 2) {
