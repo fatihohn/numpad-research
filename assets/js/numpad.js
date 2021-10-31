@@ -73,6 +73,13 @@ Test.startBtn.onclick = async () => {
     screenfull.request(Test.section);
   }
 
+  if (screenfull.isEnabled) {
+    screenfull.on('error', event => {
+      console.error('Failed to enable fullscreen', event);
+      alert('fullscreen error!');
+    });
+  }
+
   // console.log(window.navigator.standalone);
   if(Test.countInput.value >= 1) {
     Test.makeSchedule();
