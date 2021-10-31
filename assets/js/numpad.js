@@ -12,7 +12,7 @@ Test.makeSchedule = () => {
     normal: Math.floor(Test.count/1)
   }
   Test.count = Test.condition.shadow + Test.condition.normal;
-  console.log(Test.count);
+
   let schedule = [];
   let shadow = 'shadow';
   let normal = 'normal';
@@ -69,33 +69,13 @@ Test.refreshBtn.onclick = () => {
 Test.startBtn.style.display = 'initial';
 Test.startBtn.onclick = async () => {
   Test.section.style.overflowY = 'hidden';
-  if(screenfull.isEnabled) {
-    screenfull.request(Test.section);
-  }
-
-  if (screenfull.isEnabled) {
-    screenfull.on('error', event => {
-      console.error('Failed to enable fullscreen', event);
-      alert('fullscreen error!');
-    });
-  }
-
-  // console.log(window.navigator.standalone);
   if(Test.countInput.value >= 1) {
     Test.makeSchedule();
   } else {
-    alert('1 이상의 수를 입력해주세요!');
+    alert('테스트 세트는 1 이상이어야 합니다!');
     return;
   }
 
-  // if(Test.section.webkitRequestFullscreen) {
-  //   await Test.section.webkitRequestFullscreen();
-  // }
-  // if(Test.section.requestFullscreen) {
-  //   await Test.section.requestFullscreen();
-  // }
-  console.log(Test.count);
-  // Test.log = await Test.template();
   Test.status = 'testing';
   await Test.initNumPad();
   Test.enumerate();
@@ -106,8 +86,6 @@ Test.startBtn.onclick = async () => {
 }
 
 Test.nextBtn.onclick = async () => {
-  console.log(Test.count);
-  // console.log(Test.log);
   if(Test.testInput.dataset.value.length === 6) {
     if(Test.count > 0) {
       Test.setResult();
@@ -117,7 +95,6 @@ Test.nextBtn.onclick = async () => {
       return;
     }
     if(Test.count === 0){
-      // console.log(Test.count);
       Test.status = 'complete';
       Test.setResult();
       Test.showResult();
@@ -139,7 +116,6 @@ Test.setResult = () => {
   log.average_input_speed = (Math.floor((log.test_speed * 10000)/log.input_count)) / 10000;
   log.trial = Test.trial;
   Test.result.push(log);
-  console.log(log);
 }
 
 Test.showResult = () => {
@@ -150,7 +126,7 @@ Test.showResult = () => {
   Test.testNumber.innerHTML = 'Test End';
   Test.nextBtn.style.display = 'none';
   Test.endBtn.style.display = 'initial';
-  // Test.content.innerHTML = `<div id="test-result" style="display: block"></div>`;
+
   Test.result.forEach(result => {
     Test.resultHTML += `
           <tr class="border-bottom">
@@ -197,15 +173,14 @@ Test.showResult = () => {
   });
   document.querySelector('#test-result').innerHTML = Test.resultHTML;
   Test.content.innerHTML = `<table id="test-result-show" class="fs-6">
-    <thead>
-    <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-    </tr>
-    </thead>
-    <tbody>${Test.resultHTML}</tbody>
-</table>`;
-  // Test.testResult.style.display = 'initial';
+                                <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Value</th>
+                                </tr>
+                                </thead>
+                                <tbody>${Test.resultHTML}</tbody>
+                            </table>`;
 }
 
 Test.emptyAll = () => {
@@ -236,10 +211,8 @@ Test.delTestInput = () => {
 
 Test.initNumPad = async () => {
   Test.loading.style.display = 'initial';
-
-  // Test.loading.innerHTML = '준비하세요..!';
   let option = Test.schedule[Test.count - 1];
-  console.log(option);
+
   await Test.sleep(1000);
   Test.loading.style.display = 'none';
   Test.log = await Test.template();
@@ -376,17 +349,6 @@ Test.showNumPad = (option = 'normal') => {
 
   Test.numpadNumbers = Test.shuffle(Test.numpadNumbers);
 
-            // <div class="row" style="
-            //     display: -webkit-flex;
-            //     --webkit-align-items: center;
-            //     --webkit-justify-content: right;
-            //     display: flex;
-            //     align-items: center;
-            //     justify-content: right;
-            //   ">
-            //     <div class="col-2 text-center border del-btn ${shadowOption}" style="visibility: hidden"></div>
-            //     <div class="col-2 text-center border del-btn ${shadowOption}" style="visibility: hidden"></div>
-            // </div>
   return `<div id="num-pad-shadow">
             <div class="row">
               ${Test.numpadNumbers[0]}
