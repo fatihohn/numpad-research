@@ -6,5 +6,3 @@ const ppi     = 264; //Ipad3 density
 Util.mmToPx = (mm) => {
     return ((mm/inch)*ppi)/dpr;
 }
-
-// myElement.width = mmToPx(size_in_mm);
