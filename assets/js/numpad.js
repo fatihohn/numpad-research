@@ -61,6 +61,13 @@ Test.testNumber = document.querySelector('#test-number');
 Test.content = document.querySelector('#content');
 Test.section = document.querySelector('section');
 Test.testResult = document.querySelector('#test-result');
+Test.deviceInput = document.querySelector('#test-device-select-input');
+Test.deviceInputWrap = document.querySelector('#test-device-select');
+
+Test.deviceInput.onchange = async () => {
+  await Test.initNumPad();
+}
+
 
 Test.refreshBtn.onclick = () => {
   location.href = window.location;
@@ -83,6 +90,7 @@ Test.startBtn.onclick = async () => {
   Test.setTestNumbers();
   Test.startBtn.style.display = 'none';
   Test.nextBtn.style.display = 'initial';
+  Test.deviceInputWrap.style.display = 'none';
 }
 
 Test.nextBtn.onclick = async () => {
@@ -126,7 +134,10 @@ Test.showResult = () => {
   Test.testNumber.innerHTML = 'Test End';
   Test.nextBtn.style.display = 'none';
   Test.endBtn.style.display = 'initial';
-
+  Test.resultHTML = `<tr class="border-2 border-start-0 border-end-0 border-top-0">
+              <td class="px-1">기기</td>
+              <td class="px-1">${Test.device}</td>
+          </tr>`;
   Test.result.forEach(result => {
     Test.resultHTML += `
           <tr class="border-bottom">
@@ -233,12 +244,17 @@ Test.initNumPad = async () => {
     Test.testInput.style.display = 'none';
     Test.testBody.style.display = 'none';
   }
+
+  Test.device = Test.deviceInput.value;
+  console.log(Test.device);
+
   Test.testNumber.innerHTML = 'Press Start button';
   Test.emptyTestInput();
 }
 
-Test.mmToPx = (mm) => {
-  return `${Util.mmToPx(mm)}px`;
+Test.mmToPx = (mm, device=Test.device) => {
+  let ppi = Util.ppi[device];
+  return `${Util.mmToPx(mm, ppi)}px`;
 }
 
 Test.resizeBtns = () => {
@@ -385,3 +401,4 @@ document.addEventListener("DOMContentLoaded", function(){
     Test.refreshBtn.style.display = 'initial';
   };
 });
+
