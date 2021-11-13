@@ -392,7 +392,21 @@ Test.showNumPad = (option = 'normal') => {
 Test.sleep = m => new Promise(r => setTimeout(r, m));
 
 // Test.makeSchedule();
+
+
+for(let device in Util.ppi) {
+  let option = document.createElement('option');
+  option.value = device;
+  option.text = device;
+  if(device === 'iPad_Pro_11_2018') {
+    option.selected = true;
+  }
+  Test.deviceInput.appendChild(option);
+};
+
 Test.initNumPad();
+
+
 
 document.addEventListener("DOMContentLoaded", function(){
   document.querySelector("#test-end-btn").onclick = function(){

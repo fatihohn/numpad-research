@@ -25,6 +25,10 @@ Util.ppi = {
     iPad_Mini_2012 : 326,
     iPad_2th_2011 : 132,
     iPad_2010 : 132,
+    macBookPro_15_2018 : 220,
+    macBookPro_16_2019 : 226,
+    macBookPro_13_2021 : 227,
+
 }
 
 Util.mmToPx = (mm, ppi=Util.ppi.iPad_Pro_11_2018) => {
